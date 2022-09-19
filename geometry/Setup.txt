@@ -1,0 +1,14 @@
+# MATERIALS [COLORS] & GEOMETRY
+Material "pec_mat" [lightskyblue]
+./geometry/Triangle_3.STL [m]
+
+# FREQUENCIES [GHz]
+1:10:9
+
+# THETA, PHI [deg]
+0:15:5, 60
+
+RAY_SPACING [WAVELENGTHS] = .00075
+MAXIMUM_NUMBER_OF_REFLECTIONS = 1
+NUMBER_OF_THREADS = 16
+SAVE_VIEWS = YES
