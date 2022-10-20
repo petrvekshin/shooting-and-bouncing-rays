@@ -62,9 +62,4 @@ for i in range(s.theta_phi.shape[0]):
 t02 = time() - t01
 print(t02)
 
-    # for key_re, key_im in far_fields:
-    #     s = np.sum(c[key_re], 0) + 1j*np.sum(c[key_im], 0)
-    #     print("    ", key_re[:-3], np.abs(s), np.angle(s)*180.0/np.pi)
-        # if key_re[1] == key_re[3]:
-        #     with 
-    
+

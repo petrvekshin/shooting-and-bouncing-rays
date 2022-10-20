@@ -479,47 +479,7 @@ class SBR:
 
         num_hits = np.sum(self.hit_count)
         return num_hits
-        if num_hits == 0:
-            return 0
-
-        _sort_u(n_thread, self.ind, self.hit_count, self.hit)
-        self.hit = self.hit[:num_hits]
-        ray_vecs = ["dx", "dy", "dz", "qx", "qy", "qz"]
-        arrays_to_sort = ["tri", "ox", "oy", "oz", *ray_vecs, *self.ray_fields]
-        for key in arrays_to_sort:
-            setattr(self, key, getattr(self, key)[self.hit])
-        return num_hits
         
-        # compute far fields
-        """
-        for key in self.FAR_FIELDS:
-            setattr(self, key, np.empty((num_hits, self.num_freqs), dtype=np.float32, order="C"))
-        self.ind, n_thread = self.split_ind(num_hits)
-        for i in range(n_thread):
-            thread = threading.Thread(
-                target=_init_field,
-                args=(
-                    self.ind[i:],
-                    self.ui32, self.fp32, self.wavenum,
-                    self.n0x, self.n0y, self.n0z, self.d0,
-                    self.n1x, self.n1y, self.n1z, self.d1,
-                    self.n2x, self.n2y, self.n2z, self.d2,
-                    self.l, self.tri_mat,
-                    self.p_te_re, self.p_te_im,
-                    self.p_tm_re, self.p_tm_im,
-                    self.tri,
-                    self.ox, self.oy, self.oz,
-                    self.ex_x_re, self.ex_x_im,
-                    self.ey_x_re, self.ey_x_im,
-                    self.ex_y_re, self.ex_y_im,
-                    self.ey_y_re, self.ey_y_im,
-                )
-            )
-            thread.daemon = True
-            self.threads.append(thread)
-        self.thread_start_join()
-        """
-
 
     def init_pol_hit(self):
         for key in self.FAR_FIELDS:
@@ -686,13 +646,4 @@ class SBR:
             # treat rays in c dict as usual
             for key in init_keys:
                 setattr(self, key, temp[key][ray_start:ray_start+num_hits])
-            # initial field & secondary hit points
-            # for name in func_iter(c["refl_limit"]):
-            #     num_hits = func[name](c)
-            #     if num_hits == 0:
-            #         break
-
-
-
-
-
+ 

@@ -128,18 +128,6 @@ def load_material(file, n_th, freq):
         del TE, TM
         mat = {}
         theta = np.linspace(0.0, 90.0, n_th, endpoint=True)
-        # mat["te_re"] = TE_re.reshape((len(th_p), len(f_p)), order="C")
-        # mat["te_im"] = TE_im.reshape((len(th_p), len(f_p)), order="C")
-        # mat["tm_re"] = TM_re.reshape((len(th_p), len(f_p)), order="C")
-        # mat["tm_im"] = TM_im.reshape((len(th_p), len(f_p)), order="C")
-        # a = np.empty((len(th_p), len(freq)), dtype=np.float32, order="C")
-        # b = np.empty((n_th, len(freq)), dtype=np.float32, order="C")
-        # for key in mat:
-        #     for i in range(len(th_p)):
-        #         a[i,:] = np.interp(freq, f_p, mat[key][i,:])
-        #     for i in range(len(freq)):
-        #         b[:,i] = np.interp(theta, th_p, a[:,i])
-        #     mat[key] = b
         mat["te_re"] = - np.ones((n_th, len(freq)), dtype=np.float32, order="C")
         mat["te_im"] = np.zeros((n_th, len(freq)), dtype=np.float32, order="C")
         mat["tm_re"] = np.ones((n_th, len(freq)), dtype=np.float32, order="C")
@@ -255,10 +243,6 @@ def read_setup(setup_file):
                         freq_dec = max(freq_dec, decimals)
                         for f in points:
                             frequencies.append(f * units[unit])
-                            # if unit[-2:] == 'M]':
-                            #     frequencies.append(SPEED_OF_LIGHT / (f * units[unit]))
-                            # else:
-                            #     frequencies.append(f * units[unit])
                 else:
                     read_freqs = False
             elif line[:3] == "# T":
