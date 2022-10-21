@@ -1,3 +1,3 @@
-# [Shooting and bouncing rays](https://en.wikipedia.org/wiki/Shooting_and_bouncing_rays) solver based on [Havel-Herout ray-triangle intersection algorithm](https://ieeexplore.ieee.org/document/5159346) for ray-tracing
+# [Shooting and bouncing rays](https://en.wikipedia.org/wiki/Shooting_and_bouncing_rays) solver based on [Havel-Herout ray-triangle intersection algorithm](https://ieeexplore.ieee.org/document/5159346) for ray tracing
 
 The core of the solver is written in C using NumPy for memory allocation. Compared to a solver written in pure Python/NumPy this allows to avoid creating `num_triangles` by `num_rays` arrays (creating  1D arrays of length `num_rays` instead) and reduces the number of operations needed to find all intersections. The Python part is poorly coded and provided for demonstration purposes only. The solver has bugs that can lead to incorrect results when a dielectric covering is added and there are multiple reflections (PEC case works fine).
